@@ -5,21 +5,23 @@ LOCAL_PATH := vendor/samsung/i9300
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/lib/libaudioflinger.so:system/lib/libaudioflinger.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libaudioutils.so:system/lib/libaudioutils.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libsoundpool.so:system/lib/libsoundpool.so \
+    $(LOCAL_PATH)/proprietary/system/lib/hw/audio.primary.smdk4x12.so:system/lib/hw/audio.primary.smdk4x12.so \
+    $(LOCAL_PATH)/proprietary/system/lib/hw/audio_policy.smdk4x12.so:system/lib/hw/audio_policy.smdk4x12.so \
     $(LOCAL_PATH)/proprietary/system/lib/libtinyalsa.so:system/lib/libtinyalsa.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libwebrtc_audio_preprocessing.so:system/lib/libwebrtc_audio_preprocessing.so \
     $(LOCAL_PATH)/proprietary/system/etc/audio_effects.conf:system/etc/audio_effects.conf \
     $(LOCAL_PATH)/proprietary/system/etc/audio_policy.conf:system/etc/audio_policy.conf
 
 #Camera
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib/hw/camera.smdk4x12.so:system/lib/hw/camera.smdk4x12.so \
     $(LOCAL_PATH)/proprietary/system/lib/libcamera_client.so:system/lib/libcamera_client.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libcameraservice.so:system/lib/libcameraservice.so \
     $(LOCAL_PATH)/proprietary/system/lib/libfimc.so:system/lib/libfimc.so \
     $(LOCAL_PATH)/proprietary/system/lib/libfimg.so:system/lib/libfimg.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libhwjpeg.so:system/lib/libhwjpeg.so 
+    $(LOCAL_PATH)/proprietary/system/lib/libhwjpeg.so:system/lib/libhwjpeg.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libjpeg.so:system/lib/libjpeg.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libpng.so:system/lib/libpng.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libquramimagecodec.so:system/lib/libquramimagecodec.so 
 
 #RIL
 PRODUCT_COPY_FILES += \
@@ -30,36 +32,73 @@ PRODUCT_COPY_FILES += \
 
 #GPS
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib/hw/gps.exynos4.so:system/lib/hw/gps.exynos4.so \
     $(LOCAL_PATH)/proprietary/system/bin/chmod_socket.sh:system/bin/chmod_socket.sh \
     $(LOCAL_PATH)/proprietary/system/bin/glgps:system/bin/glgps \
     $(LOCAL_PATH)/proprietary/system/etc/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/proprietary/system/etc/gpsconfig.xml:system/etc/gpsconfig.xml
 
-#HW
+#Other HAL
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/audio.primary.smdk4x12.so:system/lib/hw/audio.primary.smdk4x12.so \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/audio_policy.smdk4x12.so:system/lib/hw/audio_policy.smdk4x12.so \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/camera.smdk4x12.so:system/lib/hw/camera.smdk4x12.so \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/gps.exynos4.so:system/lib/hw/gps.exynos4.so \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/sensors.smdk4x12.so:system/lib/hw/sensors.smdk4x12.so \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/lights.smdk4x12.so:system/lib/hw/lights.smdk4x12.so \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/hwcomposer.smdk4x12.so:system/lib/hw/hwcomposer.smdk4x12.so \
-    $(LOCAL_PATH)/proprietary/system/lib/hw/gralloc.smdk4x12.so:system/lib/hw/gralloc.smdk4x12.so
+    $(LOCAL_PATH)/proprietary/system/lib/libsecion.so:system/lib/libsecion.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libhwconverter.so:system/lib/libhwconverter.so 
 
-#OMX
+#Sensors
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib/hw/sensors.smdk4x12.so:system/lib/hw/sensors.smdk4x12.so \
+    $(LOCAL_PATH)/proprietary/system/bin/akmd8963:system/bin/akmd8963 
+
+#Sensor Buttons
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/proprietary/system/lib/hw/lights.smdk4x12.so:system/lib/hw/lights.smdk4x12.so 
+
+#MFC API
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib/libsecmfcdecapi.so:system/lib/libsecmfcdecapi.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libsecmfcencapi.so:system/lib/libsecmfcencapi.so 
+
+#OpenMax enc/dec
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/bin/codec:system/bin/codec \
+    $(LOCAL_PATH)/proprietary/system/bin/decoder:system/bin/decoder \
+    $(LOCAL_PATH)/proprietary/system/bin/record:system/bin/record \
+    $(LOCAL_PATH)/proprietary/system/bin/recordvideo:system/bin/recordvideo \
+    $(LOCAL_PATH)/proprietary/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/proprietary/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/proprietary/system/lib/libhwconverter.so:system/lib/libhwconverter.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libSEC_OMX_Core.so:system/lib/libSEC_OMX_Core.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libSEC_OMX_Resourcemanager.so:system/lib/libSEC_OMX_Resourcemanager.so \
     $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.AVC.Decoder.so:system/lib/omx/libOMX.SEC.AVC.Decoder.so \
     $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.AVC.Encoder.so:system/lib/omx/libOMX.SEC.AVC.Encoder.so \
-    $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.M2V.Decoder.so:system/lib/omx/libOMX.SEC.M2V.Decoder.so \
     $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.M4V.Decoder.so:system/lib/omx/libOMX.SEC.M4V.Decoder.so \
     $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.M4V.Encoder.so:system/lib/omx/libOMX.SEC.M4V.Encoder.so \
-    $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.MP3.Decoder.so:system/lib/omx/libOMX.SEC.MP3.Decoder.so \
-    $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.PXTR.AVC.Decoder.so:system/lib/omx/libOMX.SEC.PXTR.AVC.Decoder.so \
     $(LOCAL_PATH)/proprietary/system/lib/omx/libOMX.SEC.WMV.Decoder.so:system/lib/omx/libOMX.SEC.WMV.Decoder.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libOpenMAXAL.so:system/lib/libOpenMAXAL.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libSEC_OMX_Core.so:system/lib/libSEC_OMX_Core.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libSEC_OMX_Resourcemanager.so:system/lib/libSEC_OMX_Resourcemanager.so 
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright.so:system/lib/libstagefright.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_amrnb_common.so:system/lib/libstagefright_amrnb_common.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_avc_common.so:system/lib/libstagefright_avc_common.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_enc_common.so:system/lib/libstagefright_enc_common.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_foundation.so:system/lib/libstagefright_foundation.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_omx.so:system/lib/libstagefright_omx.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_aacdec.so:system/lib/libstagefright_soft_aacdec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_aacenc.so:system/lib/libstagefright_soft_aacenc.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_amrdec.so:system/lib/libstagefright_soft_amrdec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_amrnbenc.so:system/lib/libstagefright_soft_amrnbenc.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_amrwbenc.so:system/lib/libstagefright_soft_amrwbenc.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_flacenc.so:system/lib/libstagefright_soft_flacenc.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_g711dec.so:system/lib/libstagefright_soft_g711dec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_h264dec.so:system/lib/libstagefright_soft_h264dec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_h264enc.so:system/lib/libstagefright_soft_h264enc.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_mp3dec.so:system/lib/libstagefright_soft_mp3dec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_mpeg4dec.so:system/lib/libstagefright_soft_mpeg4dec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_mpeg4enc.so:system/lib/libstagefright_soft_mpeg4enc.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_rawdec.so:system/lib/libstagefright_soft_rawdec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_vorbisdec.so:system/lib/libstagefright_soft_vorbisdec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_soft_vpxdec.so:system/lib/libstagefright_soft_vpxdec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefright_yuv.so:system/lib/libstagefright_yuv.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libstagefrighthw.so:system/lib/libstagefrighthw.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libvorbisidec.so:system/lib/libvorbisidec.so \
+    $(LOCAL_PATH)/proprietary/system/lib/libui.so:system/lib/libui.so 
+
 
 #TouchScreen driver
 PRODUCT_COPY_FILES += \
@@ -71,11 +110,13 @@ PRODUCT_COPY_FILES += \
 #Key maps
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    $(LOCAL_PATH)/proprietary/system/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     $(LOCAL_PATH)/proprietary/system/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl 
+#    $(LOCAL_PATH)/proprietary/system/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
 
-#Mali
+#Graphics
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/lib/hw/hwcomposer.smdk4x12.so:system/lib/hw/hwcomposer.smdk4x12.so \
+    $(LOCAL_PATH)/proprietary/system/lib/hw/gralloc.smdk4x12.so:system/lib/hw/gralloc.smdk4x12.so \
     $(LOCAL_PATH)/proprietary/system/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
     $(LOCAL_PATH)/proprietary/system/lib/egl/libEGL_mali.so:system/lib/egl/libEGL_mali.so \
     $(LOCAL_PATH)/proprietary/system/lib/egl/libGLESv1_CM_mali.so:system/lib/egl/libGLESv1_CM_mali.so \
@@ -91,8 +132,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
     $(LOCAL_PATH)/proprietary/system/etc/bt/broadcom_bt_fw.hcd:system/etc/bt/broadcom_bt_fw.hcd \
-    $(LOCAL_PATH)/proprietary/system/etc/bt/init.brcm.bt.sh:system/etc/bt/init.brcm.bt.sh 
-#    $(LOCAL_PATH)/proprietary/system/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
+    $(LOCAL_PATH)/proprietary/system/etc/bt/init.brcm.bt.sh:system/etc/bt/init.brcm.bt.sh \
+    $(LOCAL_PATH)/proprietary/system/bin/hciattach:system/bin/hciattach \
+    $(LOCAL_PATH)/proprietary/system/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus 
 #    $(LOCAL_PATH)/proprietary/system/etc/bluetooth/audio.conf:system/etc/bluetooth/audio.conf \
 #    $(LOCAL_PATH)/proprietary/system/etc/bluetooth/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
 #    $(LOCAL_PATH)/proprietary/system/etc/bluetooth/blacklist.conf:system/etc/bluetooth/blacklist.conf \
@@ -108,21 +150,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/etc/wifi/bcmdhd.cal:system/etc/wifi/bcmdhd.cal \
     $(LOCAL_PATH)/proprietary/system/etc/wifi/fw_bcmdhd.bin:system/etc/wifi/fw_bcmdhd.bin \
     $(LOCAL_PATH)/proprietary/system/etc/wifi/fw_bcmdhd_apsta.bin:system/etc/wifi/fw_bcmdhd_apsta.bin \
-    $(LOCAL_PATH)/proprietary/system/etc/wifi/fw_bcmdhd_p2p.bin:system/etc/wifi/fw_bcmdhd_p2p.bin 
-#    $(LOCAL_PATH)/proprietary/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+    $(LOCAL_PATH)/proprietary/system/etc/wifi/fw_bcmdhd_p2p.bin:system/etc/wifi/fw_bcmdhd_p2p.bin \
+    $(LOCAL_PATH)/proprietary/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 #    $(LOCAL_PATH)/proprietary/system/bin/wpa_supplicant:system/bin/wpa_supplicant \
-
-#Vendor folder
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/vendor/firmware/fimc_is_fw.bin:system/vendor/firmware/fimc_is_fw.bin \
-    $(LOCAL_PATH)/proprietary/system/vendor/firmware/mfc_fw.bin:system/vendor/firmware/mfc_fw.bin \
-    $(LOCAL_PATH)/proprietary/system/vendor/firmware/setfile_S5K3H7.bin:system/vendor/firmware/setfile_S5K3H7.bin \
-    $(LOCAL_PATH)/proprietary/system/vendor/lib/libwvdrm_L3.so:system/vendor/lib/libwvdrm_L3.so \
-    $(LOCAL_PATH)/proprietary/system/vendor/lib/libwvm.so:system/vendor/lib/libwvm.so \
-    $(LOCAL_PATH)/proprietary/system/vendor/lib/libWVStreamControlAPI_L3.so:system/vendor/lib/libWVStreamControlAPI_L3.so \
-    $(LOCAL_PATH)/proprietary/system/vendor/lib/drm/libdrmwvmplugin.so:system/vendor/lib/drm/libdrmwvmplugin.so \
-    $(LOCAL_PATH)/proprietary/system/vendor/etc/audio_effects.conf:system/vendor/etc/audio_effects.conf
-
 
 #Some for bluetooth and wifi
 PRODUCT_COPY_FILES += \
@@ -132,9 +162,23 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/etc/encryption/md_fota:system/etc/encryption/md_fota \
     $(LOCAL_PATH)/proprietary/system/etc/encryption/wifidaemonaddr:system/etc/encryption/wifidaemonaddr 
 
-#Sensors
+#DRM
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/bin/akmd8963:system/bin/akmd8963 
+    $(LOCAL_PATH)/proprietary/system/lib/drm/libfwdlockengine.so:system/lib/drm/libfwdlockengine.so 
+
+#Vendor folder
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/system/vendor/firmware/fimc_is_fw.bin:system/vendor/firmware/fimc_is_fw.bin \
+    $(LOCAL_PATH)/proprietary/system/vendor/firmware/libpn544_fw.so:system/vendor/firmware/libpn544_fw.so \
+    $(LOCAL_PATH)/proprietary/system/vendor/firmware/mfc_fw.bin:system/vendor/firmware/mfc_fw.bin \
+    $(LOCAL_PATH)/proprietary/system/vendor/firmware/setfile.bin:system/vendor/firmware/setfile.bin \
+    $(LOCAL_PATH)/proprietary/system/vendor/firmware/SlimISP_GD.bin:system/vendor/firmware/SlimISP_GD.bin \
+    $(LOCAL_PATH)/proprietary/system/vendor/firmware/SlimISP_ZD.bin:system/vendor/firmware/SlimISP_ZD.bin \
+    $(LOCAL_PATH)/proprietary/system/vendor/lib/libwvdrm_L1.so:system/vendor/lib/libwvdrm_L1.so \
+    $(LOCAL_PATH)/proprietary/system/vendor/lib/libwvm.so:system/vendor/lib/libwvm.so \
+    $(LOCAL_PATH)/proprietary/system/vendor/lib/libWVStreamControlAPI_L1.so:system/vendor/lib/libWVStreamControlAPI_L1.so \
+    $(LOCAL_PATH)/proprietary/system/vendor/lib/drm/libdrmwvmplugin.so:system/vendor/lib/drm/libdrmwvmplugin.so \
+    $(LOCAL_PATH)/proprietary/system/vendor/etc/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 #Off-line charging
 PRODUCT_COPY_FILES += \
@@ -152,13 +196,6 @@ PRODUCT_COPY_FILES += \
 #Vold
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/etc/vold.fstab:system/etc/vold.fstab 
-#    $(LOCAL_PATH)/proprietary/system/bin/vold:system/bin/vold \
-
-
-#Media
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    $(LOCAL_PATH)/proprietary/system/etc/media_codecs.xml:system/etc/media_codecs.xml
 
 # Apns
 PRODUCT_COPY_FILES += \
@@ -166,25 +203,12 @@ PRODUCT_COPY_FILES += \
 
 #Other from etc
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/etc/hosts:system/etc/hosts \
-    $(LOCAL_PATH)/proprietary/system/etc/sysctl.conf:system/etc/sysctl.conf
+    $(LOCAL_PATH)/proprietary/system/etc/hosts:system/etc/hosts 
 
 #Other binaryes (хз что это, но это нужно)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/bin/at:system/bin/at \
-    $(LOCAL_PATH)/proprietary/system/bin/rwflexnv:system/bin/rwflexnv \
     $(LOCAL_PATH)/proprietary/system/bin/isp_fw_load:system/bin/isp_fw_load 
-#    $(LOCAL_PATH)/proprietary/system/bin/dbus-daemon:system/bin/dbus-daemon \
-#    $(LOCAL_PATH)/proprietary/system/bin/installd:system/bin/installd \
-#    $(LOCAL_PATH)/proprietary/system/bin/keystore:system/bin/keystore \
-#    $(LOCAL_PATH)/proprietary/system/bin/mtpd:system/bin/mtpd \
-#    $(LOCAL_PATH)/proprietary/system/bin/racoon:system/bin/racoon \
-
-#Other libs (хз что это, но наверное нужно)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/lib/libion.so:system/lib/libion.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libion2.so:system/lib/libion2.so \
-    $(LOCAL_PATH)/proprietary/system/lib/libflex.so:system/lib/libflex.so 
 
 #Iptables
 PRODUCT_COPY_FILES += \
