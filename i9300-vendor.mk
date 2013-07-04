@@ -40,8 +40,8 @@ PRODUCT_COPY_FILES += \
 
 #Other HAL
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/system/lib/libsecion.so:system/lib/libsecion.so \
     $(LOCAL_PATH)/proprietary/system/lib/libhwconverter.so:system/lib/libhwconverter.so 
+#    $(LOCAL_PATH)/proprietary/system/lib/libsecion.so:system/lib/libsecion.so \
 
 #Sensors
 PRODUCT_COPY_FILES += \
@@ -132,9 +132,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
     $(LOCAL_PATH)/proprietary/system/etc/bt/broadcom_bt_fw.hcd:system/etc/bt/broadcom_bt_fw.hcd \
-    $(LOCAL_PATH)/proprietary/system/etc/bt/init.brcm.bt.sh:system/etc/bt/init.brcm.bt.sh \
-    $(LOCAL_PATH)/proprietary/system/bin/hciattach:system/bin/hciattach \
-    $(LOCAL_PATH)/proprietary/system/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus 
+    $(LOCAL_PATH)/proprietary/system/etc/bt/init.brcm.bt.sh:system/etc/bt/init.brcm.bt.sh 
+#    $(LOCAL_PATH)/proprietary/system/bin/hciattach:system/bin/hciattach \
+#    $(LOCAL_PATH)/proprietary/system/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus 
 #    $(LOCAL_PATH)/proprietary/system/etc/bluetooth/audio.conf:system/etc/bluetooth/audio.conf \
 #    $(LOCAL_PATH)/proprietary/system/etc/bluetooth/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
 #    $(LOCAL_PATH)/proprietary/system/etc/bluetooth/blacklist.conf:system/etc/bluetooth/blacklist.conf \
@@ -151,8 +151,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/system/etc/wifi/fw_bcmdhd.bin:system/etc/wifi/fw_bcmdhd.bin \
     $(LOCAL_PATH)/proprietary/system/etc/wifi/fw_bcmdhd_apsta.bin:system/etc/wifi/fw_bcmdhd_apsta.bin \
     $(LOCAL_PATH)/proprietary/system/etc/wifi/fw_bcmdhd_p2p.bin:system/etc/wifi/fw_bcmdhd_p2p.bin \
-    $(LOCAL_PATH)/proprietary/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-#    $(LOCAL_PATH)/proprietary/system/bin/wpa_supplicant:system/bin/wpa_supplicant \
+    $(LOCAL_PATH)/proprietary/system/bin/wpa_supplicant:system/bin/wpa_supplicant \
+    $(LOCAL_PATH)/proprietary/system/bin/hostapd:system/bin/hostapd \
+    $(LOCAL_PATH)/proprietary/system/lib/libhardware_legacy.so:system/lib/libhardware_legacy.so 
+#    $(LOCAL_PATH)/proprietary/system/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
 
 #Some for bluetooth and wifi
 PRODUCT_COPY_FILES += \
