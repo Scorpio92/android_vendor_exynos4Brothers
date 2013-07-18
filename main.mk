@@ -12,12 +12,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/etc/audio_effects.conf:system/etc/audio_effects.conf \
     $(LOCAL_PATH)/proprietary/main/system/etc/audio_policy.conf:system/etc/audio_policy.conf
 
-#Camera
+#Hardware Camera
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/lib/libfimc.so:system/lib/libfimc.so \
-    $(LOCAL_PATH)/proprietary/main/system/lib/libfimg.so:system/lib/libfimg.so \
-    $(LOCAL_PATH)/proprietary/main/system/lib/libhwjpeg.so:system/lib/libhwjpeg.so \
-    $(LOCAL_PATH)/proprietary/main/system/lib/libjpeg.so:system/lib/libjpeg.so \
     $(LOCAL_PATH)/proprietary/main/system/lib/libpng.so:system/lib/libpng.so \
     $(LOCAL_PATH)/proprietary/main/system/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so \
     $(LOCAL_PATH)/proprietary/main/system/lib/libquramimagecodec.so:system/lib/libquramimagecodec.so 
@@ -108,6 +105,7 @@ PRODUCT_COPY_FILES += \
 #Key maps
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    $(LOCAL_PATH)/proprietary/main/system/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     $(LOCAL_PATH)/proprietary/main/system/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl 
 
 #Graphics
@@ -123,7 +121,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/lib/libGLESv1_CM.so:system/lib/libGLESv1_CM.so \
     $(LOCAL_PATH)/proprietary/main/system/lib/libGLESv2.so:system/lib/libGLESv2.so \
     $(LOCAL_PATH)/proprietary/main/system/lib/libMali.so:system/lib/libMali.so \
-    $(LOCAL_PATH)/proprietary/main/system/lib/libUMP.so:system/lib/libUMP.so 
+    $(LOCAL_PATH)/proprietary/main/system/lib/libUMP.so:system/lib/libUMP.so \
+    $(LOCAL_PATH)/proprietary/main/system/lib/libion.so:system/lib/libion.so \
+    $(LOCAL_PATH)/proprietary/main/system/lib/libion2.so:system/lib/libion2.so 
 
 #Bluetooth
 PRODUCT_COPY_FILES += \
@@ -190,27 +190,20 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/bin/res/images/charger/battery_fail.png:system/bin/res/images/charger/battery_fail.png \
     $(LOCAL_PATH)/proprietary/main/system/bin/res/images/charger/battery_warn.png:system/bin/res/images/charger/battery_warn.png 
 
-#Vold
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/main/system/etc/vold.fstab:system/etc/vold.fstab 
-
 # Apns
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/etc/apns-conf.xml:system/etc/apns-conf.xml 
 
 #Other from etc
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/main/system/etc/hosts:system/etc/hosts 
+    $(LOCAL_PATH)/proprietary/main/system/etc/hosts:system/etc/hosts \
+    $(LOCAL_PATH)/proprietary/main/system/etc/sysctl.conf:system/etc/sysctl.conf
 
-#Other binaryes (хз что это, но это нужно)
+#Other binaryes
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/bin/at:system/bin/at \
+    $(LOCAL_PATH)/proprietary/main/system/bin/vold:system/bin/vold \
     $(LOCAL_PATH)/proprietary/main/system/bin/isp_fw_load:system/bin/isp_fw_load 
-
-#Iptables
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/main/system/bin/ip6tables:system/bin/ip6tables \
-    $(LOCAL_PATH)/proprietary/main/system/bin/iptables:system/bin/iptables 
 
 #Root
 PRODUCT_COPY_FILES += \
@@ -218,4 +211,28 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/app/RootExplorer.apk:system/app/RootExplorer.apk \
     $(LOCAL_PATH)/proprietary/main/system/xbin/su:system/xbin/su
 
+#Scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/main/system/etc/init.d/00Optimization:system/etc/init.d/00Optimization \
+    $(LOCAL_PATH)/proprietary/main/system/etc/init.d/01RunSysctl:system/etc/init.d/01RunSysctl \
+    $(LOCAL_PATH)/proprietary/main/system/etc/runinit.sh:system/etc/runinit.sh 
 
+#scaling_available_frequencies
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/main/system/etc/scaling_available_frequencies:system/etc/scaling_available_frequencies
+
+#Other useful apps
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/main/system/app/flashlight.apk:system/app/flashlight.apk \
+    $(LOCAL_PATH)/proprietary/main/system/app/LN.apk:system/app/LN.apk 
+
+#Camera app from 4.3, libs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/proprietary/main/system/app/Camera.apk:system/app/Camera.apk 
+PRODUCT_COPY_FILES += $(shell find vendor/samsung/i9300/proprietary/main/system/app/CameraLibs -name '*.so' \
+	-printf '%p:system/lib/%f ')
+
+#FM-Radio
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/proprietary/main/system/app/Radio.apk:system/app/Radio.apk \
+#    $(LOCAL_PATH)/proprietary/main/system/lib/libmiker_fm.so:system/lib/libmiker_fm.so 

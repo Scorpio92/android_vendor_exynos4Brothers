@@ -1,0 +1,113 @@
+#!/system/bin/sh
+
+#CPU
+MIN_FREQ="300000"
+MAX_FREQ="1000000"
+GOV="conservative"
+echo $MIN_FREQ > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+echo $MAX_FREQ > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+echo $GOV > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "75" > /sys/devices/system/cpu/cpufreq/conservative/up_threshold
+#echo "40000" > /sys/devices/system/cpu/cpufreq/conservative/sampling_rate
+echo "5" > /sys/devices/system/cpu/cpufreq/conservative/sampling_down_factor
+echo "30" > /sys/devices/system/cpu/cpufreq/conservative/down_threshold
+echo "20" > /sys/devices/system/cpu/cpufreq/conservative/freq_step
+echo "1" > /sys/devices/system/cpu/cpufreq/conservative/ignore_nice_load
+
+#IO
+Sched="deadline"
+echo $Sched > /sys/block/mmcblk0/queue/scheduler
+
+#Task Killer
+echo "0,1,2,4,6,15" > /sys/module/lowmemorykiller/parameters/adj
+echo "2560,4096,8192,18944,22016,76800" > /sys/module/lowmemorykiller/parameters/minfree
+
+#VM
+echo "60" > /proc/sys/vm/swappiness
+
+echo "10" > /proc/sys/vm/vfs_cache_pressure
+
+echo "500" > /proc/sys/vm/dirty_expire_centisecs
+
+echo "1000" > /proc/sys/vm/dirty_writeback_centisecs
+
+echo "90" > /proc/sys/vm/dirty_ratio
+
+echo "5" > /proc/sys/vm/dirty_background_ratio
+
+echo "0" > /proc/sys/vm/oom_kill_allocating_task
+
+busybox sleep 10s
+
+#Kill Media server process
+killall -9 android.process.media
+killall -9 mediaserver
+
+# Removes Journalism
+tune2fs -o journal_data_writeback /block/path/to/system
+tune2fs -O ^has_journal /block/path/to/system
+tune2fs -o journal_data_writeback /block/path/to/cache
+tune2fs -O ^has_journal /block/path/to/cache
+tune2fs -o journal_data_writeback /block/path/to/data
+tune2fs -O ^has_journal /block/path/to/data
+
+# MicroSD Card Speed Tweak
+READ_AHEAD_KB="2049"
+
+if [ -e /sys/devices/virtual/bdi/0:18/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/0:18/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/179:0/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/179:0/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:0/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:0/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:1/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:1/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:2/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:2/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:3/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:3/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:4/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:4/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:5/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:5/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:6/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:6/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/7:7/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/7:7/read_ahead_kb
+fi
+
+if [ -e /sys/devices/virtual/bdi/default/read_ahead_kb ]; then
+    echo $READ_AHEAD_KB > /sys/devices/virtual/bdi/default/read_ahead_kb
+fi
+
+
+# Clear Junk Caches And Junk Data
+busybox find /data/data -type d -iname "*cache*" -exec busybox rm -f {}/* ';' -exec echo "Cleared {}" ';'
+rm -f /data/local/*.apk
+rm -f /data/local/tmp/*.apk
+rm -f /data/*.log
+rm -f /data/log/*.log
+rm -f /cache/*.*
+rm -f /cache/recovery/*.*
+rm -f /data/system/dropbox/*.txt
+rm -f /data/backup/pending/*.tmp
+rm -f /data/tombstones/*.*
+
