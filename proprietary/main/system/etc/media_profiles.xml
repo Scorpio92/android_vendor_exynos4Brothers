@@ -287,9 +287,9 @@
                    channels="1" />
         </EncoderProfile>
 
-        <ImageEncoding quality="90" />
-        <ImageEncoding quality="80" />
-        <ImageEncoding quality="70" />
+        <ImageEncoding quality="100" />
+        <ImageEncoding quality="100" />
+        <ImageEncoding quality="100" />
         <ImageDecoding memCap="20000000" />
 
     </CamcorderProfiles>

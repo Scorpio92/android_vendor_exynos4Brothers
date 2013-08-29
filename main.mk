@@ -148,8 +148,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/etc/wifi/fw_bcmdhd.bin:system/etc/wifi/fw_bcmdhd.bin \
     $(LOCAL_PATH)/proprietary/main/system/etc/wifi/fw_bcmdhd_apsta.bin:system/etc/wifi/fw_bcmdhd_apsta.bin \
     $(LOCAL_PATH)/proprietary/main/system/etc/wifi/fw_bcmdhd_p2p.bin:system/etc/wifi/fw_bcmdhd_p2p.bin \
-    $(LOCAL_PATH)/proprietary/main/system/bin/wpa_supplicant:system/bin/wpa_supplicant \
     $(LOCAL_PATH)/proprietary/main/system/bin/hostapd:system/bin/hostapd \
+    $(LOCAL_PATH)/proprietary/main/system/bin/wpa_supplicant:system/bin/wpa_supplicant \
     $(LOCAL_PATH)/proprietary/main/system/lib/libhardware_legacy.so:system/lib/libhardware_legacy.so 
 
 #Some for bluetooth and wifi
@@ -202,8 +202,8 @@ PRODUCT_COPY_FILES += \
 #Other binaryes
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/proprietary/main/system/bin/at:system/bin/at \
-    $(LOCAL_PATH)/proprietary/main/system/bin/vold:system/bin/vold \
     $(LOCAL_PATH)/proprietary/main/system/bin/isp_fw_load:system/bin/isp_fw_load 
+#    $(LOCAL_PATH)/proprietary/main/system/bin/vold:system/bin/vold \
 
 #Root
 PRODUCT_COPY_FILES += \
@@ -223,8 +223,8 @@ PRODUCT_COPY_FILES += \
 
 #Other useful apps
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/proprietary/main/system/app/flashlight.apk:system/app/flashlight.apk \
     $(LOCAL_PATH)/proprietary/main/system/app/LN.apk:system/app/LN.apk 
+#    $(LOCAL_PATH)/proprietary/main/system/app/flashlight.apk:system/app/flashlight.apk \
 
 #Camera app from 4.3, libs
 PRODUCT_COPY_FILES += \
@@ -235,4 +235,7 @@ PRODUCT_COPY_FILES += $(shell find vendor/samsung/i9300/proprietary/main/system/
 #FM-Radio
 #PRODUCT_COPY_FILES += \
 #    $(LOCAL_PATH)/proprietary/main/system/app/Radio.apk:system/app/Radio.apk \
-#    $(LOCAL_PATH)/proprietary/main/system/lib/libmiker_fm.so:system/lib/libmiker_fm.so 
+#    $(LOCAL_PATH)/proprietary/main/system/lib/libmiker_fm.so:system/lib/libmiker_fm.so
+
+#Google Apps
+$(call inherit-product-if-exists, vendor/google/gapps.mk) 

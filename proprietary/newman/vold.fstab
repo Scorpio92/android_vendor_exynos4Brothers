@@ -12,8 +12,8 @@
 ## <sysfs_path> - List of sysfs paths to source devices
 ######################
 #New variant, Change int sd and ext sd
-#dev_mount sdcard /mnt/sdcard 1 /devices/platform/s3c-sdhci.2/mmc_host/mmc1
-#dev_mount ext_sd /mnt/ext_sd 1 /devices/platform/dw_mmc/mmc_host/mmc0 nonremovable,encryptable
+dev_mount sdcard /mnt/sdcard 1 /devices/platform/s3c-sdhci.2/mmc_host/mmc1
+dev_mount ext_sd /mnt/ext_sd 1 /devices/platform/dw_mmc/mmc_host/mmc0 nonremovable,encryptable
 #New variant, stock pathes
 #dev_mount sdcard /mnt/sdcard 1 /devices/platform/dw_mmc/mmc_host/mmc0 nonremovable,encryptable
 #dev_mount ext_sd /mnt/ext_sd 1 /devices/platform/s3c-sdhci.2/mmc_host/mmc1
@@ -21,5 +21,5 @@
 #dev_mount sdcard /mnt/sdcard/external_SD 1 /devices/platform/dw_mmc/mmc_host/mmc0
 #dev_mount sdcard2 /mnt/sdcard 1 /devices/platform/s3c-sdhci.2/mmc_host/mmc1
 #Stock, changed int and ext
-dev_mount sdcard /mnt/sdcard 1 /devices/platform/s3c-sdhci.2/mmc_host/mmc1
-dev_mount sdcard2 /mnt/sdcard/external_SD 1 /devices/platform/dw_mmc/mmc_host/mmc0
+#dev_mount sdcard /mnt/sdcard 1 /devices/platform/s3c-sdhci.2/mmc_host/mmc1
+#dev_mount sdcard2 /mnt/sdcard/external_SD 1 /devices/platform/dw_mmc/mmc_host/mmc0
