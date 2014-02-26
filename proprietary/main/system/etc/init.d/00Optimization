@@ -4,7 +4,7 @@ echo "1" > /sys/devices/platform/kp_leds-gpio/leds/BLUE_LED/brightness
 
 #CPU
 MIN_FREQ="300000"
-MAX_FREQ="1000000"
+MAX_FREQ="800000"
 echo $MIN_FREQ > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 echo $MAX_FREQ > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 
@@ -22,18 +22,18 @@ echo "40000" > /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate;
 echo "80" > /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold;
 echo "2" > /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor;
 echo "5" > /sys/devices/system/cpu/cpufreq/pegasusq/down_differential;
-echo "20" > /sys/devices/system/cpu/cpufreq/pegasusq/freq_step;
+echo "12" > /sys/devices/system/cpu/cpufreq/pegasusq/freq_step;
 echo "15" > /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate
 echo "15" > /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate
 echo "0" > /sys/devices/system/cpu/cpufreq/pegasusq/max_cpu_lock;
 echo "0" > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_lock;
 echo "1" > /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load;
 echo 500000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_1_1;
-echo 600000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_0;
-echo 700000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_1;
-echo 800000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_0;
-echo 900000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_1;
-echo 800000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_4_0;
+echo 500000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_0;
+echo 600000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_1;
+echo 600000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_0;
+echo 700000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_1;
+echo 700000 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_4_0;
 echo 200 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_1_1;
 echo 150 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_0;
 echo 250 > /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_1;
@@ -56,7 +56,7 @@ echo 25 > /sys/module/mali/parameters/mali_l2_max_reads
 echo 5000 > /sys/ module/mali/parameters/mali_max_job_runtime
 
 #IO
-Sched="deadline"
+Sched="cfq"
 echo $Sched > /sys/block/mmcblk0/queue/scheduler
 
 #VM
